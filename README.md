@@ -1,6 +1,46 @@
 # Projeto - Biblioteca
 
-É uma aplicação de biblioteca utilizando Python, SQLite e web scraping. Permite cadastrar, listar, buscar, atualizar e deletar autores, livros, usuários e empréstimos, utilizando um banco SQLite local e dados coletados via web scraping.
+Aplicação desenvolvida em Python com SQLite e web scraping, permitindo gerenciar autores, livros, usuários e empréstimos de forma simples e eficiente. Inclui CRUD completo, validações, modelagem de dados e automação para preencher o banco inicial com livros reais.
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.10+-blue" />
+  <img src="https://img.shields.io/badge/SQLite-Database-blueviolet" />
+  <img src="https://img.shields.io/badge/Web%20Scraping-BeautifulSoup-success" />
+  <img src="https://img.shields.io/badge/CLI-Tabulate-orange" />
+  <img src="https://img.shields.io/badge/Status-Concluído-brightgreen" />
+</p>
+
+
+---
+
+## Funcionalidades Principais
+
+- CRUD completo para autores, livros, usuários e empréstimos
+- Controle de disponibilidade de livros
+- Devolução e fechamento de empréstimos
+- Validações robustas (ISBN, datas, strings e regras de negócio)
+- Web scraping automático para gerar dados iniciais
+- Integração livro ↔ autor
+- Interface via terminal com Tabulate e cores
+- Trigger que limita usuários a 5 empréstimos ativos
+- Estrutura modular (banco, serviços, utilidades, menus)
+
+---
+
+## Prints do Sistema
+
+### Menu Principal
+![menu](./prints/menu.png)
+
+### Listagem de Livros (Tabulate)
+![livros](./prints/livros.png)
+
+### Cadastro de Usuário
+![usuario](./prints/usuario.png)
+![usuario](./prints/usuario2.png)
+
+### Empréstimo Realizado
+![emprestimo](./prints/emprestimo.png)
 
 ---
 
@@ -9,7 +49,7 @@
 ```bash
 projeto_biblioteca/
 │
-├─ database/ # funções que acessam o banco diretamente
+├─ database/ # Acesso direto ao banco de dados (CRUD em nível de DB)
 │ ├─ conectar_banco.py
 │ ├─ crud_autores_db.py
 │ ├─ crud_emprestimos_db.py
@@ -17,22 +57,22 @@ projeto_biblioteca/
 │ ├─ crud_livros_db.py
 │ └─ crud_usuarios_db.py
 │
-├─ servicos/ # funções que interagem com o usuário e chamam o CRUD
+├─ servicos/ # Lógica de negócio + interação com o usuário
 │ ├─ crud_autores.py
 │ ├─ crud_emprestimos.py
 │ ├─ crud_livros_autores.py
 │ ├─ crud_livros.py
 │ └─ crud_usuarios.py
 │
-├─ utils/ # funções auxiliares
+├─ utils/ # Funções auxiliares
 │ ├─ mensagens.py
 │ └─ validacoes.py
 │
-├─ menus.py # menus e interação principal
-├─ scraping.py # coleta dados da web e insere no banco
-├─ criar_banco.py # cria o banco SQLite vazio
-├─ requirements.txt # bibliotecas externas necessárias
-└─ README.md # este arquivo
+├─ menus.py # Menus e interação principal
+├─ scraping.py # Coleta livros da web e insere no banco
+├─ criar_banco.py  # Gera a estrutura inicial do banco (tabelas + trigger)
+├─ requirements.txt # Dependências do projeto
+└─ README.md # Documentação
 
 ```
 ---
@@ -93,22 +133,12 @@ Internamente, todos os CRUDs já gerenciam a conexão com o banco (conectar_banc
 
 ---
 
-## Funcionalidades por CRUD
-
-- Autores: cadastrar, listar, buscar, atualizar, deletar
-- Livros: cadastrar, listar, buscar, atualizar, deletar
-- Usuários: cadastrar, listar, buscar, atualizar, deletar
-- Empréstimos: cadastrar, listar, buscar, atualizar, deletar, devoluções
-- Livros-Autores: vincular livros a autores, buscar livros de autores
-
----
-
 ## Observações
 
-- O arquivo biblioteca.db não está incluído; ele será gerado ao rodar os scripts.
-- Projeto voltado para uso acadêmico e aprendizado.
-- Para qualquer alteração ou adição de dados, utilize os CRUDs via menus.py.
-- Estrutura modular facilita manutenção e expansão futura.
+- O arquivo biblioteca.db é criado automaticamente.
+- O projeto é voltado para fins educacionais e de aprendizado.
+- Toda manipulação de dados deve ser feita pelos menus interativos.
+- A organização modular facilita a manutenção e futuras expansões.
 
 ---
 
